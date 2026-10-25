@@ -105,6 +105,78 @@ s{color:var(--muted)}
 .nav.nav--dark .cart-btn:hover{background:rgba(255,255,255,.1)}
 .nav__right{display:flex;align-items:center;gap:8px}
 
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  white-space: nowrap;
+  padding: 12px 22px;
+  font-size: 16px;
+  line-height: 1.2;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.btn--primary {
+  background: linear-gradient(180deg, #2a8dff, #0a6cf0) !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,.25) inset, 0 8px 22px -8px rgba(10,108,240,.7) !important;
+}
+.btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 1px 0 rgba(255,255,255,.25) inset, 0 12px 28px -8px rgba(10,108,240,.85) !important;
+  color: #ffffff !important;
+}
+.btn--primary:active {
+  transform: none;
+}
+.btn--dark {
+  background: #1d1d1f !important;
+  color: #ffffff !important;
+}
+.btn--dark:hover {
+  background: #2c2c2e !important;
+}
+.btn--ghost {
+  background: var(--surface, #ffffff) !important;
+  color: var(--ink, #1d1d1f) !important;
+  box-shadow: inset 0 0 0 1px var(--line, rgba(0,0,0,.15)) !important;
+}
+.btn--ghost:hover {
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.28) !important;
+  transform: translateY(-1px);
+}
+.btn--xs { padding: 7px 14px; font-size: 13px; }
+.btn--sm { padding: 9px 18px; font-size: 14px; }
+.btn--lg { padding: 15px 28px; font-size: 17px; font-weight: 700; }
+.btn--block { display: flex; width: 100%; }
+.btn svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* Hide cart & Payhip completely */
+.cart, .cart-overlay {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 /* Footer */
 .footer{padding:48px 0 56px;border-top:1px solid var(--line);background:var(--bg)}
 .footer__inner{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap}

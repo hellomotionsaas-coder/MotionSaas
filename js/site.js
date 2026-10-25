@@ -146,7 +146,7 @@
   function writeCart(list) {
     memCart = list;
     try { localStorage.setItem(CART_KEY, JSON.stringify(list)); } catch (e) {}
-    renderCart();
+    // cart disabled
   }
   function addToCart(id) {
     var p = byId(id) || PRODUCTS[0];
@@ -162,24 +162,7 @@
 
   var drawer, overlay, lastFocus;
   function buildDrawer() {
-    if (drawer) return;
-    overlay = document.createElement('div');
-    overlay.className = 'cart-overlay';
-    overlay.setAttribute('data-cart-close', '');
-    drawer = document.createElement('aside');
-    drawer.className = 'cart';
-    drawer.setAttribute('role', 'dialog');
-    drawer.setAttribute('aria-modal', 'true');
-    drawer.setAttribute('aria-label', 'Cart');
-    drawer.setAttribute('aria-hidden', 'true');
-    drawer.innerHTML =
-      '<div class="cart__head"><h2>Cart</h2>' +
-      '<button class="icon-btn" type="button" data-cart-close aria-label="Close cart">' +
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>' +
-      '<div class="cart__body" data-cart-body></div>' +
-      '<div class="cart__foot" data-cart-foot></div>';
-    document.body.appendChild(overlay);
-    document.body.appendChild(drawer);
+    return; // Cart disabled for free direct download
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && document.documentElement.classList.contains('cart-open')) closeCart(); });
   }
 
@@ -223,8 +206,8 @@
   }
 
   function openCart() {
-    if (!drawer) buildDrawer();
-    renderCart();
+    if (!drawer) // cart disabled
+    // cart disabled
     lastFocus = document.activeElement;
     document.documentElement.classList.add('cart-open');
     drawer.setAttribute('aria-hidden', 'false');
@@ -549,10 +532,10 @@
     bindPrices();
     tickTimers();
     setInterval(tickTimers, 1000);
-    buildDrawer();
+    // cart disabled
     buildContactModal();
     buildPrivacyModal();
-    renderCart();
+    // cart disabled
     initNav();
     initReveal();
     initLazyVideos();
