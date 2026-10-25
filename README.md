@@ -10,7 +10,7 @@
 - **Product Name:** **MotionSaas** (or **Motion Saas**)
 - **Product Type:** Adobe After Effects extension (CEP Panel) built specifically for SaaS video editors, product designers, and motion graphics artists.
 - **Original Codebase:** The site was originally created as *VenmoFX* / *SaaS-FX*. It has been completely rebranded to **MotionSaas**.
-- **Monetization Model:** **100% Free Direct Download**. All payment gateways, checkout drawers, and Payhip modals have been removed. Users download `MotionSaaS.zip` directly from the website without paying, entering credit cards, or signing up.
+- **Monetization Model:** **Free during early access** (the extension is still being built; it will become paid later). Copy says "free during early access" — never "free forever". All payment gateways, checkout drawers, and Payhip modals have been removed for now; the backup has them if pricing comes back. Users download `MotionSaaS.zip` directly from the website without paying, entering credit cards, or signing up.
 - **Official Live Website:** [https://hellomotionsaas-coder.github.io/MotionSaas/](https://hellomotionsaas-coder.github.io/MotionSaas/)
 - **GitHub Repository:** `https://github.com/hellomotionsaas-coder/MotionSaas.git` (Branch: `main`)
 - **Working Directory:** `D:\Development\projects\MotionSaas\Dont Delete This\venmo website`
@@ -63,12 +63,9 @@
   - **Rule:** DO NOT rename the button to "Try It" and DO NOT remove `.panel` class, as `saasfx.js` / `motionsaas.js` expects `.panel` to attach dynamic CSS properties.
 
 ### 5. Extension UI in `#modes` (Dark Mode & Light Mode)
-- The `#modes` section showcases the authentic MotionSaas interface (matching `extension/index.html`):
-  - **Dark Interface Card** (`.ms-preview--dark`) and **Light Interface Card** (`.ms-preview--light`).
-  - Header: Logo icon, `MotionSaas v2.1`, Subtitle ("Dark Interface" / "Light Interface").
-  - Mode Tabs: Moon (active), Lightning, Circle, Bracket.
-  - **Anchor & Align:** 3×3 arrow grid with blue active center dot, `Comp ▾` dropdown, distribute icons, and full-width `FIT TO COMP` blue gradient button.
-  - **SaaS Kit Tools:** 2×2 grid of pill buttons: `Gradient`, `Mesh BG`, `Glass`, `Palettes`.
+- The `#modes` section shows the panel twice, `.mp.mp--dark` and `.mp.mp--light` (styles in `css/saasfx.css`), with the extension's real tools: **Studio** (Easing, Expressions, Shake, Styles), **OS Kit** (Typing, Cursor, Hover, Counter), **Tool panels** (Carousel, Grid Builder, Palettes, Assetbox).
+- The hero panel lists Text / Motion / Layouts / Transitions / Design with real tool names. Tool names and counts on the site must match the extension (see the main repo's HANDOFF.md). Version shown is the extension's (`extension/CSXS/manifest.xml`), currently v1.0.
+- The old `.ms-preview` "Anchor & Align" mock is no longer used (its CSS is still at the end of `saasfx.css`).
 
 ### 6. Interactive Live Demos (`#try`)
 - Live interactive previews running directly in the browser:
@@ -133,7 +130,7 @@ venmo website/
 │
 ├── contact/                     # Directory-style alias for contact.html
 │   └── index.html
-└── products/                    # Product route aliases
+└── products/                    # Old product URLs: tiny redirects to ../../index.html (no copy to keep in sync)
     ├── motionsaas/index.html
     └── saasfx/index.html
 ```

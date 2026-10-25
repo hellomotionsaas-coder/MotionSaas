@@ -9,7 +9,8 @@ For the complete detailed documentation, see [README.md](./README.md).
 
 - **Project:** MotionSaas (official website for the MotionSaas Adobe After Effects CEP extension).
 - **Brand Name:** **MotionSaas** / **Motion Saas** (Strictly NO legacy names like "VenmoFX" or "SaaS-FX").
-- **Product Model:** **100% Free Direct Download** of `MotionSaaS.zip` (8.53 MB). No payments, Payhip, or carts.
+- **Product Model:** **Free during early access** — direct download of `MotionSaaS.zip`. No payments, Payhip, or carts for now; it becomes paid later, so never write "free forever".
+- **Content must describe the real extension** (tool names and counts from the main repo's HANDOFF.md), not venmofx's SaaS-FX tools.
 - **Live Deployment:** [https://hellomotionsaas-coder.github.io/MotionSaas/](https://hellomotionsaas-coder.github.io/MotionSaas/) (GitHub repository: `hellomotionsaas-coder/MotionSaas`, branch: `main`).
 - **Backup Reference:** `../venmo website backup/` (DO NOT EDIT — reference only).
 
@@ -37,8 +38,7 @@ For the complete detailed documentation, see [README.md](./README.md).
    - Keep the `.panel` class inside `[data-tilt]` so `saasfx.js` / `motionsaas.js` doesn't crash.
 
 5. **Modes Section (`#modes`):**
-   - Must display the authentic MotionSaas interface: Dark Interface (`.ms-preview--dark`) and Light Interface (`.ms-preview--light`).
-   - Includes Anchor & Align (3×3 grid, `Comp ▾`, `FIT TO COMP` button) and SaaS Kit Tools (Gradient, Mesh BG, Glass, Palettes).
+   - Shows the panel in dark and light (`.mp.mp--dark` / `.mp.mp--light`) with real tools: Studio, OS Kit and Tool panels groups.
 
 6. **Interactive Carousel (`#try`):**
    - Uses all 8 cards `images/c1.webp` through `images/c8.webp`.
@@ -67,5 +67,5 @@ For the complete detailed documentation, see [README.md](./README.md).
 ## Subpage Sync & Deployment
 
 Whenever updating `index.html` or `contact.html`:
-1. Keep directory aliases in sync (`contact/index.html`, `products/motionsaas/index.html`, `products/saasfx/index.html`).
+1. Keep `contact/index.html` in sync with `contact.html`. (`products/*/index.html` are just redirects to the homepage — nothing to sync.)
 2. Deploy to GitHub Pages by pushing to `hellomotionsaas-coder/MotionSaas` (`main` branch).
