@@ -411,6 +411,7 @@
   /* ------------------------------------------------------------------
      Navigation with smooth scrolling & sliding indicator
      ------------------------------------------------------------------ */
+  /* Highlights current nav tab based on URL path */
   function initNav() {
     var nav = document.querySelector('.nav');
     var buybar = document.querySelector('[data-buybar]');
@@ -427,12 +428,14 @@
     initNavIndicator();
   }
 
+  /* Sliding glass highlight behind the current tab (bouncy), carried across page loads */
   function initNavIndicator() {
     var wrap = document.querySelector('.nav__links');
     if (!wrap) return;
-    var links = Array.prototype.slice.call(wrap.querySelectorAll('a[href^="#"]'));
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var links = Array.prototype.slice.call(wrap.querySelectorAll('a'));
+    if (!links.length) return;
 
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var ind = wrap.querySelector('.nav__ind');
     if (!ind) {
       ind = document.createElement('span');
@@ -442,79 +445,82 @@
     }
     wrap.classList.add('has-ind');
 
-    var currentActive = null, shown = false;
+    // Determine current active link
+    var path = (window.location.pathname || '').toLowerCase();
+    var isContact = path.includes('contact');
+    var cur = null;
+
+    if (isContact) {
+      cur = wrap.querySelector('a[href*="contact"]') || links[links.length - 1];
+    } else {
+      cur = wrap.querySelector('a[aria-current="page"]') || 
+            wrap.querySelector('a.is-on') || 
+            links[0];
+    }
+    if (!cur) cur = links[0];
+
+    var target = cur, shown = false;
 
     function mark(a) {
-      wrap.querySelectorAll('a').forEach(function (l) {
-        l.classList.toggle('is-on', l === a);
-        if (l === a) l.setAttribute('aria-current', 'page');
+      links.forEach(function (l) {
+        var active = (l === a);
+        l.classList.toggle('is-on', active);
+        if (active) l.setAttribute('aria-current', 'page');
         else l.removeAttribute('aria-current');
       });
     }
 
     function place(a, animate) {
-      if (!a) { ind.style.opacity = '0'; shown = false; return; }
+      if (!a) { ind.style.opacity = '0'; wrap.classList.remove('ind-ready'); shown = false; return; }
+      var w = a.offsetWidth;
+      var left = a.offsetLeft;
+      if (w <= 0) {
+        wrap.classList.remove('ind-ready');
+        return;
+      }
       var instant = !animate || !shown || reduce;
       if (instant) ind.classList.add('no-anim');
-      ind.style.width = a.offsetWidth + 'px';
-      ind.style.transform = 'translateX(' + a.offsetLeft + 'px)';
+      ind.style.width = w + 'px';
+      ind.style.transform = 'translateX(' + left + 'px)';
       ind.style.opacity = '1';
+      wrap.classList.add('ind-ready');
       shown = true;
       if (instant) { void ind.offsetWidth; ind.classList.remove('no-anim'); }
     }
 
+    mark(cur);
+    place(cur, false);
+
     links.forEach(function (a) {
+      a.addEventListener('mouseenter', function () { place(a, true); });
+      a.addEventListener('focus', function () { place(a, true); });
       a.addEventListener('click', function (e) {
-        var hash = a.getAttribute('href');
-        if (hash && hash.startsWith('#')) {
-          var targetEl = document.querySelector(hash);
+        var href = a.getAttribute('href') || '';
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          target = a; place(a, true); mark(a);
+          var targetEl = document.querySelector(href);
           if (targetEl) {
-            e.preventDefault();
-            currentActive = a;
-            mark(a);
-            place(a, true);
-            var yOffset = -70;
-            var yPos = targetEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
-            window.scrollTo({ top: Math.max(0, yPos), behavior: reduce ? 'auto' : 'smooth' });
+            targetEl.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
           }
+          return;
         }
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        target = a; place(a, true); mark(a);
       });
     });
+    wrap.addEventListener('mouseleave', function () { place(target, true); });
 
-    // Scroll spy: highlight current visible section
-    var sections = links.map(function (a) {
-      var id = a.getAttribute('href');
-      var el = document.querySelector(id);
-      return el ? { el: el, a: a } : null;
-    }).filter(Boolean);
-
-    function updateActiveOnScroll() {
-      var scrollPos = (window.scrollY || window.pageYOffset) + 120;
-      var hit = null;
-      for (var i = 0; i < sections.length; i++) {
-        var top = sections[i].el.offsetTop;
-        var height = sections[i].el.offsetHeight;
-        if (scrollPos >= top && scrollPos < top + height) {
-          hit = sections[i].a;
-          break;
-        }
-      }
-      if (hit && hit !== currentActive) {
-        currentActive = hit;
-        mark(hit);
-        place(hit, true);
-      }
+    window.addEventListener('resize', function () { place(target, false); });
+    window.addEventListener('pageshow', function (e) {
+      mark(cur);
+      place(cur, false);
+    });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { place(target, false); });
     }
-
-    window.addEventListener('scroll', updateActiveOnScroll, { passive: true });
-    window.addEventListener('resize', function () { if (currentActive) place(currentActive, false); });
-
-    if (links.length) {
-      currentActive = links[0];
-      mark(currentActive);
-      place(currentActive, false);
-      updateActiveOnScroll();
-    }
+    setTimeout(function () { place(target, false); }, 50);
+    setTimeout(function () { place(target, false); }, 250);
   }
 
   function initReveal() {

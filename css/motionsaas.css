@@ -1220,3 +1220,310 @@
     font-size: 6.5px;
   }
 }
+
+
+/* =================================================================
+   MotionSaas Dark & Light Mode Preview Cards (media_1792917063129_469d67ab.png)
+   ================================================================= */
+.ms-preview-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.ms-preview {
+  width: 100%;
+  max-width: 390px;
+  border-radius: 24px;
+  padding: 16px;
+  font-family: inherit;
+  user-select: none;
+  -webkit-user-select: none;
+  box-sizing: border-box;
+}
+.ms-preview--dark {
+  background: #18181a;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 32px 64px -20px rgba(0, 0, 0, 0.7), 0 16px 32px -12px rgba(0, 0, 0, 0.5);
+  color: #f5f5f7;
+}
+.ms-preview--light {
+  background: #f0f0f5;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04), 0 32px 64px -20px rgba(16, 40, 90, 0.22), 0 16px 32px -12px rgba(16, 40, 90, 0.14);
+  color: #1c1c1e;
+}
+.ms-preview__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  margin-bottom: 12px;
+  background: #252528;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.ms-preview--light .ms-preview__head {
+  background: #252528; /* dark header bar in light mode too as shown in the screenshot */
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.ms-preview__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: #1c1c1e;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+}
+.ms-preview__icon img {
+  width: 28px;
+  height: 28px;
+  display: block;
+  object-fit: contain;
+}
+.ms-preview__title {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #ffffff;
+}
+.ms-preview__title b {
+  color: #007aff;
+  font-weight: 800;
+}
+.ms-preview__ver {
+  font-size: 11px;
+  color: #8e8e93;
+  margin-left: 5px;
+  font-weight: 600;
+}
+.ms-preview__sub {
+  font-size: 12px;
+  color: #8e8e93;
+  margin-top: 2px;
+}
+.ms-preview__tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  padding: 4px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+.ms-preview--dark .ms-preview__tabs {
+  background: #101012;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.ms-preview--light .ms-preview__tabs {
+  background: #e5e5ea;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.ms-tab {
+  height: 34px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: #8e8e93;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+.ms-tab svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ms-preview--dark .ms-tab.is-active {
+  background: #007aff;
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 122, 255, 0.45);
+}
+.ms-preview--light .ms-tab.is-active {
+  background: #dbeafe;
+  color: #007aff;
+}
+.ms-preview__sec {
+  border-radius: 16px;
+  padding: 13px 14px;
+  margin-bottom: 10px;
+}
+.ms-preview--dark .ms-preview__sec {
+  background: #141416;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.ms-preview--light .ms-preview__sec {
+  background: #e5e5ea;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+.ms-sec__label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.ms-preview--dark .ms-sec__label { color: #8e8e93; }
+.ms-preview--light .ms-sec__label { color: #636366; }
+.ms-sec__label .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #007aff;
+}
+.ms-aa-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 9px;
+  margin-bottom: 10px;
+}
+.ms-grid-3x3 {
+  display: grid;
+  grid-template-columns: repeat(3, 29px);
+  gap: 4px;
+}
+.ms-btn-sq {
+  width: 29px;
+  height: 29px;
+  border-radius: 6px;
+  border: none;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0;
+}
+.ms-preview--dark .ms-btn-sq {
+  background: #252528;
+  color: #f5f5f7;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.ms-preview--light .ms-btn-sq {
+  background: #ffffff;
+  color: #1c1c1e;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+.ms-btn-sq.is-active {
+  background: #007aff !important;
+  color: #ffffff !important;
+  border-color: #007aff !important;
+  box-shadow: 0 0 10px rgba(0, 122, 255, 0.55);
+}
+.ms-align-col {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.ms-dropdown {
+  height: 29px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.ms-preview--dark .ms-dropdown {
+  background: #252528;
+  color: #f5f5f7;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.ms-preview--light .ms-dropdown {
+  background: #ffffff;
+  color: #1c1c1e;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+.ms-grid-align {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.ms-grid-align .ms-btn-sq {
+  width: 100%;
+}
+.ms-grid-align svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ms-btn-fit {
+  width: 100%;
+  height: 35px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(180deg, #0a84ff, #007aff);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 122, 255, 0.45);
+  transition: all 0.15s ease;
+}
+.ms-btn-fit:hover {
+  background: #006ee6;
+}
+.ms-grid-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.ms-tool-btn {
+  height: 38px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.ms-preview--dark .ms-tool-btn {
+  background: #252528;
+  color: #f5f5f7;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.ms-preview--light .ms-tool-btn {
+  background: #ffffff;
+  color: #1c1c1e;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.ms-tool-btn:hover {
+  transform: translateY(-1px);
+}
+.ms-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  flex: none;
+}
+.ms-swatch--grad { background: linear-gradient(135deg, #5856d6, #007aff); }
+.ms-swatch--mesh { background: linear-gradient(135deg, #ff2d55, #ff9500, #34c759); }
+.ms-swatch--glass { background: rgba(255, 255, 255, 0.25); border: 1.5px solid rgba(255, 255, 255, 0.5); }
+.ms-swatch--pal { background: linear-gradient(90deg, #ff3b30 25%, #ffcc00 25% 50%, #34c759 50% 75%, #007aff 75%); }

@@ -1,4 +1,4 @@
-/* MotionSaas — 3D panel, Hover demo, Carousel demo, video sound */
+/* MotionSaas page: 3D panel, Hover demo, Carousel demo, video sound */
 (function () {
   'use strict';
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -28,10 +28,11 @@
      1) 3D PANEL — tilts toward the cursor, shadow + light reflection
      ================================================================= */
   (function panel3d() {
-    var stage = document.querySelector('[data-tilt-stage]');
+var stage = document.querySelector('[data-tilt-stage]');
     var card = document.querySelector('[data-tilt]');
     if (!stage || !card) return;
     var panel = card.querySelector('.panel');
+    if (!panel) return;
     var shadow = stage.querySelector('.p3d__shadow');
     var floatEl = stage.querySelector('[data-apply-float]');
     var applyBtn = stage.querySelector('[data-apply3d]');
@@ -380,7 +381,7 @@
       return { opacity: 1 - a * (1 - F.o), transform: 'translate(' + (F.x * a).toFixed(2) + 'px,' + (F.y * a).toFixed(2) + 'px) scale(' + (1 + (F.s - 1) * a).toFixed(3) + ')', filter: 'blur(' + (F.b * a).toFixed(2) + 'px)' };
     }
     function build() {
-      var txt = (input.value || 'MotionSaas').slice(0, 24), html = '', i, ch;
+      var txt = (input.value || ' ').slice(0, 24), html = '', i, ch;
       for (i = 0; i < txt.length; i++) { ch = txt.charAt(i); html += ch === ' ' ? ' ' : '<span>' + ch.replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }) + '</span>'; }
       box.innerHTML = html;
     }
